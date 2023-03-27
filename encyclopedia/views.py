@@ -89,21 +89,23 @@ def editpage(request, page):
 def search(request):
     query = request.GET.get('q')
     entries = util.list_entries()
+    message = f"{query} not in wiki!"
     #if request.method == 'get':
     if query in entries:
         return render(request, "encyclopedia/entry.html", {
             "page": util.get_entry(query),
             "entry": query
         })
-    if query not in entries:
+    else :#query not in entries:
         pattern = re.compile(f".*{query}")
         text = util.list_entries()
         results = list(filter(pattern.match, text))
         return render(request, "encyclopedia/search.html",{
-            "results": results
+            "results": results,
+            "message": message
     })
-    else:
-        message = f"{query} not in wiki!"
-        return render(request, "encyclopedia/search.html",{
-            "results": message
-    })
+    # else:
+    #     message = f"{query} not in wiki!"
+    #     return render(request, "encyclopedia/search.html",{
+    #         "message": message
+    # })

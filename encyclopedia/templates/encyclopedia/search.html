@@ -11,8 +11,11 @@
 <ul>
     {% for entry in results %}
         <li><a href="{{ entry }}"> {{ entry }}</li>
+    
+        {% empty %}
+        {{ message }}
     {% endfor %}
 </ul>
-    {{ message }}
+
 
 {% endblock %}
