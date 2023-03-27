@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ entry }}
+{% endblock %} 
+
+{% block body %} 
+
+  {% load markdownify %}
+    {{ page|markdownify }}
+
+<button type="button">
+  <a href="{{entry}}/edit">Edit</a>
+</button>
+
+
+
+
+{% endblock %} 
